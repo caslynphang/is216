@@ -1,7 +1,7 @@
 // config object that will be passed into phaser.game function
 // if you don't understand any of this just think about it as you customizing your sims character
 // i also don't understand every component
-import MainScene from "MainScene.js";
+import MainScene from "./MainScene.js";
 const config = {
     width: 512,
     height: 512,
