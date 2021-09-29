@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- The title of our webpage, subject to change -->
+    <title>Smu Map</title>
+    <!-- Using phaser CDN, chose .min.js because apparently it preserves bandwidth. -->
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
+    <!-- Using plugin for physics engine - 2D game from (https://www.npmjs.com/package/phaser-matter-collision-plugin) -->
+    <script src="//cdn.jsdelivr.net/npm/phaser-matter-collision-plugin"></script>
+</head>
+<body>
+    <!-- div which phaser will draw canvas on -->
+    <div id="game-canvas"></div>
+    <script id="module" src="mainscript.js"></script>
+</body>
+</html>
