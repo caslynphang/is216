@@ -1,19 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- The title of our webpage, subject to change -->
-    <title>Smu Map</title>
-    <!-- Using phaser CDN, chose .min.js because apparently it preserves bandwidth. -->
-    <script src="//cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
-    <!-- Using plugin for physics engine - 2D game from (https://www.npmjs.com/package/phaser-matter-collision-plugin) -->
-    <script src="//cdn.jsdelivr.net/npm/phaser-matter-collision-plugin"></script>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.15.1/dist/phaser-arcade-physics.min.js"></script>
 </head>
 <body>
-    <!-- div which phaser will draw canvas on -->
-    <div id="game-canvas"></div>
-    <script id="module" src="mainscript.js"></script>
+
+    <script>
+    var config = {
+        type: Phaser.AUTO,
+        width: 800,
+        height: 600,
+        physics: {
+            default: 'arcade',
+            arcade: {
+                gravity: { y: 200 }
+            }
+        },
+        scene: {
+            preload: preload,
+            create: create
+        }
+    };
+
+    var game = new Phaser.Game(config);
+
+    function preload ()
+    {
+        this.load.setBaseURL('http://labs.phaser.io');
+
+        this.load.image('sky', 'assets/skies/space3.png');
+        this.load.image('logo', 'assets/sprites/phaser3-logo.png');
+        this.load.image('red', 'assets/particles/red.png');
+    }
+
+    function create ()
+    {
+        this.add.image(400, 300, 'sky');
+
+        var particles = this.add.particles('red');
+
+        var emitter = particles.createEmitter({
+            speed: 100,
+            scale: { start: 1, end: 0 },
+            blendMode: 'ADD'
+        });
+
+        var logo = this.physics.add.image(400, 100, 'logo');
+
+        logo.setVelocity(100, 200);
+        logo.setBounce(1, 1);
+        logo.setCollideWorldBounds(true);
+
+        emitter.startFollow(logo);
+    }
+    </script>
+
 </body>
 </html>
