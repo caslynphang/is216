@@ -1,0 +1,184 @@
+{
+    "anims": [
+        {
+            "key": "idle_back",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "character",
+                    "frame": "male_13"
+                }
+            ]
+        },
+        {
+            "key": "idle_right",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "character",
+                    "frame": "male_9"
+                },
+                {
+                    "key": "character",
+                    "frame": "male_12"
+                },
+                {
+                    "key": "character",
+                    "frame": "male_9"
+                },
+                {
+                    "key": "character",
+                    "frame": "male_9"
+                }
+            ]
+        },
+        {
+            "key": "idle_left",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "character",
+                    "frame": "male_5"
+                },
+                {
+                    "key": "character",
+                    "frame": "male_8"
+                },
+                {
+                    "key": "character",
+                    "frame": "male_5"
+                },
+                {
+                    "key": "character",
+                    "frame": "male_5"
+                }
+            ]
+        },
+        {
+            "key": "idle_forward",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "character",
+                    "frame": "male_1"
+                },
+                {
+                    "key": "character",
+                    "frame": "male_4"
+                },
+                {
+                    "key": "character",
+                    "frame": "male_1"
+                },
+                {
+                    "key": "character",
+                    "frame": "male_1"
+                }
+            ]
+        },
+        {
+            "key": "walking_back",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 3,
+            "frames": [
+                {
+                    "key": "character",
+                    "frame": "male_13"
+                },
+                {
+                    "key": "character",
+                    "frame": "male_14"
+                },
+                {
+                    "key": "character",
+                    "frame": "male_13"
+                },
+                {
+                    "key": "character",
+                    "frame": "male_15"
+                }
+            ]
+        },
+        {
+            "key": "walking_right",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 3,
+            "frames": [
+                {
+                    "key": "character",
+                    "frame": "male_9"
+                },
+                {
+                    "key": "character",
+                    "frame": "male_10"
+                },
+                {
+                    "key": "character",
+                    "frame": "male_9"
+                },
+                {
+                    "key": "character",
+                    "frame": "male_11"
+                }
+            ]
+        },
+        {
+            "key": "walking_left",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 3,
+            "frames": [
+                {
+                    "key": "character",
+                    "frame": "male_5"
+                },
+                {
+                    "key": "character",
+                    "frame": "male_6"
+                },
+                {
+                    "key": "character",
+                    "frame": "male_5"
+                },
+                {
+                    "key": "character",
+                    "frame": "male_7"
+                }
+            ]
+        },
+        {
+            "key": "walking_forward",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 3,
+            "frames": [
+                {
+                    "key": "character",
+                    "frame": "male_1"
+                },
+                {
+                    "key": "character",
+                    "frame": "male_2"
+                },
+                {
+                    "key": "character",
+                    "frame": "male_1"
+                },
+                {
+                    "key": "character",
+                    "frame": "male_3"
+                }
+            ]
+        }
+    ]
+}
