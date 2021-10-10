@@ -3,20 +3,21 @@
 // i also don't understand every component
 import MainScene from "./mainscene.js";
 const config = {
-    width: 512,
-    height: 512,
+    width: 1920,
+    height: 1080,
     backgroundColour: "#333333",
     type: Phaser.AUTO,
     parent: "game-canvas",
     scene:[MainScene],
     scale: {
-        zoom:2,
+        mode:Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH,
     },
     //2D games has x and y axis movement so gravity on y-axis is removed, if not the character will fall off screen!
     physics: {
         default: 'matter',
         matter: {
-            debug:true,
+            debug:false,
             gravity:{y:0}
         }
     },
@@ -25,8 +26,8 @@ const config = {
         scene:[
             {
                 plugin: PhaserMatterCollisionPlugin,
-                key: 'matterCollision',
-                mapping: 'matterCollision'
+                key: "matterCollision",
+                mapping: "matterCollision"
             }
         ]
     }
