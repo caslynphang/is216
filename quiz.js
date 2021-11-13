@@ -6,7 +6,7 @@ export default class quiz extends Phaser.Scene {
     }
 
     preload(){
-        this.load.json('questions', "./assets/data.json")    
+        this.load.json('questions', "./Assets/data.json")    
     }
 
 
