@@ -22,7 +22,7 @@ export default class HUDScene extends Phaser.Scene {
         const logout = this.add.image(1890, 100, 'logout').setInteractive()
         logout.setScale(2)
         logout.on('pointerdown', function(){
-            window.location.href = "login.html";
+            window.location.href = "index.html";
         })
         this.btnUp = this.add.existing(new GameButton(this,1700, 800, 'buttons', 'btnup'));
         this.btnLeft = this.add.existing(new GameButton(this,1652, 896, 'buttons', 'btnleft'));
