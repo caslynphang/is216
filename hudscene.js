@@ -1,5 +1,4 @@
 import GameButton from "./buttons.js";
-import "./firebase_config.js"
 
 export default class HUDScene extends Phaser.Scene {
     constructor() {
