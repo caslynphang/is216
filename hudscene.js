@@ -15,9 +15,11 @@ export default class HUDScene extends Phaser.Scene {
 
     static preload(scene) {
         scene.load.atlas('buttons','./Assets/Sprites/btn_atlas.png','./Assets/Sprites/btn_atlas.json');
+        scene.load.image('logout', './Assets/Sprites/Unsorted/logout.png')
     }
 
     create() {
+        const logout = this.add.image(1970, 10, 'logout')
         this.btnUp = this.add.existing(new GameButton(this,1700, 800, 'buttons', 'btnup'));
         this.btnLeft = this.add.existing(new GameButton(this,1652, 896, 'buttons', 'btnleft'));
         this.btnDown = this.add.existing(new GameButton(this,1700, 992, 'buttons', 'btndown'));
