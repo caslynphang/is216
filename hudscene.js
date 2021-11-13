@@ -22,11 +22,7 @@ export default class HUDScene extends Phaser.Scene {
         const logout = this.add.image(1890, 100, 'logout').setInteractive()
         logout.setScale(2)
         logout.on('pointerdown', function(){
-             firebaseApp.auth().signOut().then(() => {
-                window.location.href = "login.html";
-             }).catch(e => {
-                console.log(e)
-             })
+            window.location.href = "login.html";
         })
         this.btnUp = this.add.existing(new GameButton(this,1700, 800, 'buttons', 'btnup'));
         this.btnLeft = this.add.existing(new GameButton(this,1652, 896, 'buttons', 'btnleft'));
