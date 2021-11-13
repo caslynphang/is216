@@ -102,33 +102,41 @@ function signUpUser() {
         passwordError.innerHTML = "Please enter the Password."
     }
 
-    // CREATING USER & ADDING IT INTO THE FIREBASE
-    firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
-       
-    }).catch(e => {
-        error.innerHTML = "Sign Up unsuccessful. Please try again."
-        reset();
-        console.log(e);
 
-    });
+    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+        .then(function () {
+            // CREATING USER & ADDING IT INTO THE FIREBASE
+            firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
+                window.location.href = "game.html";
+            }).catch(e => {
+                error.innerHTML = "Sign Up unsuccessful. Please try again."
+                reset();
+                console.log(e);
 
+            });
+
+        })
+        .catch(function (error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+        });
 }
 
 // LOGIN WITH GOOGLE ACCOUNT
 function GoogleLogin() {
-    console.log('Login Btn Call')
-    firebase.auth().signInWithPopup(provider).then(res => {
-        
-    }).catch(e => {
-        console.log(e)
-    })
+    // console.log('Login Btn Call')
+
+    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+        .then(function () {
+            firebase.auth().signInWithPopup(provider).then(res => {
+                window.location.href = "game.html";
+            }).catch(e => {
+                console.log(e)
+            })
+        })
+        .catch(function (error) {
+            // Handle Errors here.
+            console.log(error);
+        });
 }
-
-// STATE OF THE USER
-firebase.auth().onAuthStateChanged(user => {
-    if (user) { // CHECK IF THE USER IS EXIST 
-        window.location.href = "game.html"; // NEED TO CHANGE TO INDEX.HTML
-    } else { // USER IS SUCCESSFULLY CREATED 
-
-    }
-})
