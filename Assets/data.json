@@ -1,0 +1,52 @@
+{
+    "SOE":[
+      {
+        "id": 1,
+        "question": "What food vendor isn't located at the SOE/SOSS building?",
+        "choices": ["Mr. Bean", "Ya Kun", "Subway"],
+        "answer": 2
+      },
+      {
+        "id": 2,
+        "question": "How many faculty members does SOE currently have?",
+        "choices": ["52", "57", "55"],
+        "answer": 1
+      },    
+      {
+        "id": 3,
+        "question": "Who is the current Dean of SOSS?",
+        "choices": ["Professor Hoon Hian Teck", "Professor Emeritus Roberto S. Mariano", "Professor Chandran Kukathas"],
+        "answer": 2
+      },
+      {
+        "id": 4,
+        "question": "What major listed below is one not offered in SOSS?",
+        "choices": ["Actuarial Science", "Arts and Culture Management", "Psychology"],
+        "answer": 0
+      }
+    ],
+
+    "SCIS":[
+      {
+        "id": 1,
+        "question": "What animal is the mascot for Ellipsis, the student representative body of SCIS?",
+        "choices": ["Owl", "Parrot", "Cat"],
+        "answer": 0
+      },
+      {
+        "id": 2,
+        "question": "How many undergraduate degrees are being offered under SCIS?",
+        "choices": ["1", "2", "3"],
+        "answer": 2
+      },    
+      {
+        "id": 3,
+        "question": "As of 30 Sep 2021, there are ___ students enrolled in the undergraduate degrees in SCIS.",
+        "choices": ["1995", "1996", "1997"],
+        "answer": 1
+      }
+    ]
+
+
+
+  }
