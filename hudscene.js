@@ -22,7 +22,7 @@ export default class HUDScene extends Phaser.Scene {
         const logout = this.add.image(1890, 100, 'logout').setInteractive()
         logout.setScale(2)
         logout.on('pointerdown', function(){
-             firebase.auth().signOut().then(() => {
+             firebaseApp.auth().signOut().then(() => {
                 window.location.href = "login.html";
              }).catch(e => {
                 console.log(e)
