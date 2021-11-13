@@ -13,6 +13,7 @@ export default class MainScene extends Phaser.Scene {
         Player.preload(this);
         HUDScene.preload(this);
         this.load.image('concourse', './Assets/Sprites/concoursetilemap.png');
+        this.load.image('arrows', './Assets/Sprites/arrow.png');
         this.load.tilemapTiledJSON('map','./Assets/Sprites/mainmap.json');
         this.load.scenePlugin('AnimatedTiles', 'https://raw.githubusercontent.com/nkholski/phaser-animated-tiles/master/dist/AnimatedTiles.js', 'animatedTiles', 'animatedTiles');
     }
@@ -82,10 +83,11 @@ export default class MainScene extends Phaser.Scene {
         //loading tilemap
         const ground = map.addTilesetImage('concoursetilemap','concourse');
         const playerFront = map.addTilesetImage('concoursetilemap', 'concourse');
+        const arrow = map.addTilesetImage('arrow', 'arrows')
         const playerBack = map.addTilesetImage('concoursetilemap', 'concourse');
         const groundLayer = map.createLayer('ground',ground);
         const playerFrontLayer = map.createLayer('playerFront', playerFront);
-        const playerBackLayer = map.createLayer('playerBack', playerBack).setDepth(1);
+        const playerBackLayer = map.createLayer('playerBack', [playerBack,arrow]).setDepth(1);
         this.animatedTiles.init(map);
 
         // assigning player object to a physic
