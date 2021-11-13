@@ -1,0 +1,28 @@
+{
+    "anims": [
+        {
+            "key": "cycle",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 4,
+            "frames": [
+                {
+                    "key": "cycling_sheet",
+                    "frame": "cycling_idle"
+                },
+                {
+                    "key": "cycling_sheet",
+                    "frame": "cycling_left"
+                },
+                {
+                    "key": "cycling_sheet",
+                    "frame": "cycling_idle_2"
+                },
+                {
+                    "key": "cycling_sheet",
+                    "frame": "cycling_right"
+                }
+            ]
+        }
+    ]
+}

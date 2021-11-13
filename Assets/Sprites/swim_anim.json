@@ -1,0 +1,28 @@
+{
+    "anims": [
+        {
+            "key": "swimming",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 3,
+            "frames": [
+                {
+                    "key": "swim",
+                    "frame": "swimming_2"
+                },
+                {
+                    "key": "swim",
+                    "frame": "swimming_3"
+                },
+                {
+                    "key": "swim",
+                    "frame": "swimming_4"
+                },
+                {
+                    "key": "swim",
+                    "frame": "swimming_5"
+                }
+            ]
+        }
+    ]
+}
