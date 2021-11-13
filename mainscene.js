@@ -19,6 +19,11 @@ export default class MainScene extends Phaser.Scene {
 
 
     create(){
+        // conquered attribute
+        this.sisconquered = false
+        this.soeconquered = false
+        this.sobconquered = false
+        this.soaconquered = false
         // transfering school data 
         this.schoolvisited = null
         //to see which scene is currently open
