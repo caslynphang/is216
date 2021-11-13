@@ -59,6 +59,7 @@ export default class MainScene extends Phaser.Scene {
         this.sisZone = this.iZoneArr[8]
         this.soeZone = this.iZoneArr[9]
         this.schoolZone = this.iZoneArr[10]
+        this.quizZone = this.iZoneArr[11]
 
         const startZones = map.objects[0].objects;
         this.sisStartx = startZones[0].x;
@@ -128,6 +129,11 @@ export default class MainScene extends Phaser.Scene {
             this.scene.launch('SwimScene')
             this.scene.pause()
         }
+        else if(this.matter.containsPoint(this.quizZone, this.player.x, this.player.y) && this.popUp == false){
+            this.popUp = true
+            this.scene.launch('quiz')
+            this.scene.pause()
+        }
         else if(this.matter.containsPoint(this.sobZone, this.player.x, this.player.y)){
             this.player.x = this.schoolStartx
             this.player.y = this.schoolStarty
@@ -182,7 +188,7 @@ export default class MainScene extends Phaser.Scene {
         
 
 
-        if(!this.matter.containsPoint(this.danceZone, this.player.x, this.player.y) && !this.matter.containsPoint(this.swimZone, this.player.x, this.player.y) && !this.matter.containsPoint(this.bikeZone, this.player.x, this.player.y) && this.popUp == true){
+        if(!this.matter.containsPoint(this.danceZone, this.player.x, this.player.y) && !this.matter.containsPoint(this.quizZone, this.player.x, this.player.y) && !this.matter.containsPoint(this.swimZone, this.player.x, this.player.y) && !this.matter.containsPoint(this.bikeZone, this.player.x, this.player.y) && this.popUp == true){
             this.popUp = false
         }
         
