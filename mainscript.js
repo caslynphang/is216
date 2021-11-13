@@ -1,15 +1,23 @@
 // config object that will be passed into phaser.game function
 // if you don't understand any of this just think about it as you customizing your sims character
 // i also don't understand every component
+import BikeScene from "./biking.js";
+import BikeHud from "./bikinghud.js";
+import HUDScene from "./hudscene.js";
 import MainScene from "./mainscene.js";
+import DanceScene from "./simon.js";
+import SwimScene from "./swim.js";
+import SwimHud from "./swimhud.js";
+
 const config = {
-    width: 1920,
+    width: 1980,
     height: 1080,
     backgroundColour: "#333333",
     type: Phaser.AUTO,
     parent: "game-canvas",
-    scene:[MainScene],
+    scene:[MainScene, HUDScene, DanceScene, BikeScene, BikeHud, SwimScene, SwimHud],
     scale: {
+        
         mode:Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH,
     },
@@ -17,20 +25,10 @@ const config = {
     physics: {
         default: 'matter',
         matter: {
-            debug:false,
+            debug:true,
             gravity:{y:0}
         }
     },
-    // using phasermattercollisionplugin for eventhandling
-    plugins: {
-        scene:[
-            {
-                plugin: PhaserMatterCollisionPlugin,
-                key: "matterCollision",
-                mapping: "matterCollision"
-            }
-        ]
-    }
 }
 
 // creating game object with these attributes
