@@ -46,7 +46,7 @@ function loginUser() {
 function GoogleLogin() {
     console.log('Login Btn Call')
     firebase.auth().signInWithPopup(provider).then(res => {
-        window.location.href = "game.html"; // NEED TO CHANGE TO INDEX.HTML
+        
     }).catch(e => {
         console.log(e)
     })
@@ -55,7 +55,7 @@ function GoogleLogin() {
 // STATE OF THE USER
 firebase.auth().onAuthStateChanged(user => {
     if (user) { // CHECK IF THE USER IS EXIST 
-        
+        window.location.href = "game.html"; // NEED TO CHANGE TO INDEX.HTML
     } else { // USER IS SUCCESSFULLY CREATED 
 
     }
