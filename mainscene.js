@@ -16,6 +16,7 @@ export default class MainScene extends Phaser.Scene {
         this.load.image('arrows', './Assets/Sprites/arrow.png');
         this.load.tilemapTiledJSON('map','./Assets/Sprites/mainmap.json');
         this.load.scenePlugin('AnimatedTiles', 'https://raw.githubusercontent.com/nkholski/phaser-animated-tiles/master/dist/AnimatedTiles.js', 'animatedTiles', 'animatedTiles');
+        this.load.scenePlugin('rexuiplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexuiplugin.min.js', 'rexUI');
     }
 
 
