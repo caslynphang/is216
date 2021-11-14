@@ -8,6 +8,7 @@ import MainScene from "./mainscene.js";
 import DanceScene from "./simon.js";
 import SwimScene from "./swim.js";
 import SwimHud from "./swimhud.js";
+import quiz from "./quiz.js"
 
 const config = {
     width: 1980,
