@@ -1,28 +1,34 @@
 //import Phaser from "phaser"
 export default class quiz extends Phaser.Scene {
     constructor() {
-        // calling scene
         super("quiz");
     }
 
     preload(){
-        this.load.json('questions', "./assets/data.json")    
+        this.load.json('questions', "./Assets/data.json")    
     }
 
 
     create() {
-        window.mainScene = this.scene.get("test")
-        this.school = mainScene.school
-        this.conquered = mainScene.conquered
+        console.log("ran")
+        window.mainScene = this.scene.get("MainScene")
+        this.school = mainScene.schoolvisited
+
+        console.log(this.school)
+
+        this.conquered = mainScene[this.school.toLowerCase() + 'conquered']
         window.questions = this.cache.json.get("questions")
         this.score = 0
         this.print = this.add.text(0, 0, '');
         this.questioncount = 0
         
+        console.log(this.conquered)
+
         if(this.conquered == false){
-            createStartDialog(this, this.school)
+            createStartDialog(mainScene, this.school)
+
         } else {
-            mainScene.close("quiz")
+            mainScene.closeScene("quiz")
         }
 
 
@@ -30,22 +36,22 @@ export default class quiz extends Phaser.Scene {
     }
 }
 
-function genQuestionDialog(scene, count){
-    if(count == questions[scene.school].length){
-        if(scene.score >= Math.floor(questions[scene.school].length/2)){
+function genQuestionDialog(mainScene, count){
+    if(count == questions[mainScene.school].length){
+        if(mainScene.score >= Math.floor(questions[mainScene.school].length/2)){
             this.conquered = true
-            createEndDialog(scene)
+            createEndDialog(mainScene)
             return
         }
         else{
-            createRestartDialog(scene)
+            createRestartDialog(mainScene)
             return
         }
     }
 
-    scene.rexUI.modalPromise(
+    mainScene.rexUI.modalPromise(
         // Game object
-        createQuestionDialog(scene, questions[scene.school][count]),
+        createQuestionDialog(mainScene, questions[mainScene.school][count]),
         // Config
         {
             manualClose: true,
@@ -54,24 +60,24 @@ function genQuestionDialog(scene, count){
 }
 
 
-var createQuestionDialog = function (scene, qn){
+var createQuestionDialog = function (mainScene, qn){
     var dialog = 
-        scene.rexUI.add.dialog({
-        x: scene.scale.width*0.5,
-        y: scene.scale.height*0.5,
+    mainScene.rexUI.add.dialog({
+        x: mainScene.scale.width*0.5,
+        y: mainScene.scale.height*0.5,
 
-        width: scene.scale.width*0.8,
-        height: scene.scale.height*0.8,
+        width: mainScene.scale.width*0.8,
+        height: mainScene.scale.height*0.8,
 
-        background: scene.rexUI.add.roundRectangle(0, 0, 100, 100, 20, 0x3e2723),
+        background: mainScene.rexUI.add.roundRectangle(0, 0, 100, 100, 20, 0x3e2723),
 
-        title: scene.add.text(0, 0, 'Score: '+ scene.score, {
+        title: mainScene.add.text(0, 0, 'Score: '+ mainScene.score, {
             fontSize: '24px'
         }),
 
-        content: scene.rexUI.add.label({
-            background: scene.rexUI.add.roundRectangle(0, 0, 100, 40, 20, 0x1b0000),
-            text: scene.add.text(0, 0, 'Question ' + qn.id, {
+        content: mainScene.rexUI.add.label({
+            background: mainScene.rexUI.add.roundRectangle(0, 0, 100, 40, 20, 0x1b0000),
+            text: mainScene.add.text(0, 0, 'Question ' + qn.id, {
                 fontSize: '24px'
             }),
             space: {
@@ -82,15 +88,15 @@ var createQuestionDialog = function (scene, qn){
             }
         }).setDraggable(),
 
-        description: scene.add.text(0, 0, qn.question, {
+        description: mainScene.add.text(0, 0, qn.question, {
             fontSize: '24px'
         }),
 
 
         choices: [
-            createLabel(scene, qn.choices[0], 700, 30),
-            createLabel(scene, qn.choices[1], 700, 30),
-            createLabel(scene, qn.choices[2], 700, 30),
+            createLabel(mainScene, qn.choices[0], 700, 30),
+            createLabel(mainScene, qn.choices[1], 700, 30),
+            createLabel(mainScene, qn.choices[2], 700, 30),
         ],
 
         space: {
@@ -114,7 +120,7 @@ var createQuestionDialog = function (scene, qn){
             title: false  
         },
 
-        actions: [createLabel(scene, "Continue", 200, 30)]
+        actions: [createLabel(mainScene, "Continue", 200, 30)]
     })
         .layout()
         //.drawBounds(this.add.graphics(), 0xff0000)
@@ -127,7 +133,7 @@ var createQuestionDialog = function (scene, qn){
             console.log("test")
             if(this.getElement('choices').includes(button)){ //check if button is a choice button
                 if(index == qn.answer){
-                    scene.score += 1
+                    mainScene.score += 1
                 }
                 this.showAction(0)
                 for(var choice of this.getElement('choices')){
@@ -137,8 +143,8 @@ var createQuestionDialog = function (scene, qn){
 
             if(this.getElement('actions').includes(button)){ //condition to check if button pushed is continue button
                 dialog.destroy(); //close dialog
-                scene.questioncount += 1 //increment number of questions that have been displayed
-                genQuestionDialog(scene, scene.questioncount) //generate new dialog
+                mainScene.questioncount += 1 //increment number of questions that have been displayed
+                genQuestionDialog(mainScene, mainScene.questioncount) //generate new dialog
 
             }
 
@@ -159,21 +165,22 @@ var createQuestionDialog = function (scene, qn){
         
 }
 
-var createStartDialog = function (scene, school){
+var createStartDialog = function (mainScene, school){
+    console.log("createStartDialog ran")
     var content = 'Welcome to ' + school +"! Play our quiz to learn more about the school, and get a passing score to 'beat' the school!"
     var dialog = 
-        scene.rexUI.add.dialog({
-        x: scene.scale.width*0.5,
-        y: scene.scale.height*0.5,
+        mainScene.rexUI.add.dialog({
+        x: mainScene.scale.width*0.5,
+        y: mainScene.scale.height*0.5,
 
-        width: scene.scale.width*0.8,
-        height: scene.scale.height*0.8,
+        width: mainScene.scale.width*0.8,
+        height: mainScene.scale.height*0.8,
 
-        background: scene.rexUI.add.roundRectangle(0, 0, 100, 100, 20, 0x3e2723),
+        background: mainScene.rexUI.add.roundRectangle(0, 0, 100, 100, 20, 0x3e2723),
 
-        content: scene.rexUI.add.label({
-            background: scene.rexUI.add.roundRectangle(0, 0, 100, 40, 20, 0x1b0000),
-            text: scene.add.text(0, 0, 'Welcome!', {
+        content: mainScene.rexUI.add.label({
+            background: mainScene.rexUI.add.roundRectangle(0, 0, 100, 40, 20, 0x1b0000),
+            text: mainScene.add.text(0, 0, 'Welcome!', {
                 fontSize: '24px'
             }),
             space: {
@@ -185,10 +192,10 @@ var createStartDialog = function (scene, school){
         }),
 
         
-        description: scene.add.text(0, 0, content, {
+        description: mainScene.add.text(0, 0, content, {
             fontSize: '24px',
             wordWrap:{
-                width: scene.scale.width * 0.6
+                width: mainScene.scale.width * 0.6
             }
         }),
 
@@ -214,7 +221,7 @@ var createStartDialog = function (scene, school){
             title: false  
         },
 
-        actions: [createLabel(scene, "Continue", 200, 30)]
+        actions: [createLabel(mainScene, "Continue", 200, 30)]
     })
         .layout()
         //.drawBounds(this.add.graphics(), 0xff0000)
@@ -222,7 +229,7 @@ var createStartDialog = function (scene, school){
         
     dialog    
         .on('button.click', function (button, groupName, index, event) {
-            genQuestionDialog(scene, 0)
+            genQuestionDialog(mainScene, 0)
             dialog.destroy()
         }, this)
         .on('button.over', function (button, groupName, index) {
@@ -238,20 +245,20 @@ var createStartDialog = function (scene, school){
     return dialog  
 }
 
-var createEndDialog = function (scene){
+var createEndDialog = function (mainScene){
     var dialog = 
-        scene.rexUI.add.dialog({
-        x: scene.scale.width*0.5,
-        y: scene.scale.height*0.5,
+        mainScene.rexUI.add.dialog({
+        x: mainScene.scale.width*0.5,
+        y: mainScene.scale.height*0.5,
 
-        width: scene.scale.width*0.8,
-        height: scene.scale.height*0.8,
+        width: mainScene.scale.width*0.8,
+        height: mainScene.scale.height*0.8,
 
-        background: scene.rexUI.add.roundRectangle(0, 0, 100, 100, 20, 0x3e2723),
+        background: mainScene.rexUI.add.roundRectangle(0, 0, 100, 100, 20, 0x3e2723),
 
-        content: scene.rexUI.add.label({
-            background: scene.rexUI.add.roundRectangle(0, 0, 100, 40, 20, 0x1b0000),
-            text: scene.add.text(0, 0, 'Congratulations!', {
+        content: mainScene.rexUI.add.label({
+            background: mainScene.rexUI.add.roundRectangle(0, 0, 100, 40, 20, 0x1b0000),
+            text: mainScene.add.text(0, 0, 'Congratulations!', {
                 fontSize: '24px'
             }),
             space: {
@@ -263,10 +270,10 @@ var createEndDialog = function (scene){
         }),
 
         
-        description: scene.add.text(0, 0, "You have completed! Your final score is: " + scene.score, {
+        description: mainScene.add.text(0, 0, "You have completed! Your final score is: " + mainScene.score, {
             fontSize: '24px',
             wordWrap:{
-                width: scene.scale.width * 0.6
+                width: mainScene.scale.width * 0.6
             }
         }),
 
@@ -292,7 +299,7 @@ var createEndDialog = function (scene){
             title: false  
         },
 
-        actions: [createLabel(scene, "Quit", 200, 30)]
+        actions: [createLabel(mainScene, "Quit", 200, 30)]
     })
         .layout()
         //.drawBounds(this.add.graphics(), 0xff0000)
@@ -312,20 +319,20 @@ var createEndDialog = function (scene){
     return dialog  
 }
 
-var createRestartDialog = function (scene){
+var createRestartDialog = function (mainScene){
     var dialog = 
-        scene.rexUI.add.dialog({
-        x: scene.scale.width*0.5,
-        y: scene.scale.height*0.5,
+        mainScene.rexUI.add.dialog({
+        x: mainScene.scale.width*0.5,
+        y: mainScene.scale.height*0.5,
 
-        width: scene.scale.width*0.8,
-        height: scene.scale.height*0.8,
+        width: mainScene.scale.width*0.8,
+        height: mainScene.scale.height*0.8,
 
-        background: scene.rexUI.add.roundRectangle(0, 0, 100, 100, 20, 0x3e2723),
+        background: mainScene.rexUI.add.roundRectangle(0, 0, 100, 100, 20, 0x3e2723),
 
-        content: scene.rexUI.add.label({
-            background: scene.rexUI.add.roundRectangle(0, 0, 100, 40, 20, 0x1b0000),
-            text: scene.add.text(0, 0, 'Oh no!', {
+        content: mainScene.rexUI.add.label({
+            background: mainScene.rexUI.add.roundRectangle(0, 0, 100, 40, 20, 0x1b0000),
+            text: mainScene.add.text(0, 0, 'Oh no!', {
                 fontSize: '24px'
             }),
             space: {
@@ -337,10 +344,10 @@ var createRestartDialog = function (scene){
         }),
 
         
-        description: scene.add.text(0, 0, "You have not conquered the school! Try Again? ", {
+        description: mainScene.add.text(0, 0, "You have not conquered the school! Try Again? ", {
             fontSize: '24px',
             wordWrap:{
-                width: scene.scale.width * 0.6
+                width: mainScene.scale.width * 0.6
             }
         }),
 
@@ -366,7 +373,7 @@ var createRestartDialog = function (scene){
             title: false  
         },
 
-        actions: [createLabel(scene, "Quit", 200, 30), createLabel(scene, "Restart", 200, 30)]
+        actions: [createLabel(mainScene, "Quit", 200, 30), createLabel(mainScene, "Restart", 200, 30)]
     })
         .layout()
         //.drawBounds(this.add.graphics(), 0xff0000)
@@ -380,7 +387,7 @@ var createRestartDialog = function (scene){
             }
 
             else{
-                scene.scene.restart();
+                mainScene.restart();
             }
         }, this)
         .on('button.over', function (button, groupName, index) {
@@ -392,14 +399,14 @@ var createRestartDialog = function (scene){
     return dialog  
 }
 
-var createLabel = function (scene, text, width, height, backgroundColor) {
-    return scene.rexUI.add.label({
-        background: scene.rexUI.add.roundRectangle(0, 0, 100, 40, 20, 0x6a4f4b),
+var createLabel = function (mainScene, text, width, height, backgroundColor) {
+    return mainScene.rexUI.add.label({
+        background: mainScene.rexUI.add.roundRectangle(0, 0, 100, 40, 20, 0x6a4f4b),
 
         width: width,
         height: height,
 
-        text: scene.add.text(0, 0, text, {
+        text: mainScene.add.text(0, 0, text, {
             fontSize: '24px'
         }),
 
