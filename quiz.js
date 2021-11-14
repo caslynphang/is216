@@ -12,8 +12,8 @@ export default class quiz extends Phaser.Scene {
 
     create() {
         window.mainScene = this.scene.get("MainScene")
-        this.school = mainScene.school
-        this.conquered = mainScene.conquered
+        this.school = mainScene.schoolVisited
+        this.conquered = mainScene[this.school + 'conquered']
         window.questions = this.cache.json.get("questions")
         this.score = 0
         this.print = this.add.text(0, 0, '');
