@@ -8,3 +8,24 @@ var firebaseConfig = {
     };
   // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+var db = firebase.firestore();
+
+// FEEDBACK
+function send() {
+  var emailaddress = document.getElementById('emailaddress').value;
+  console.log(emailaddress);
+  var message = document.getElementById("message").value;
+
+  db.collection("review").doc().set({
+    email: emailaddress,
+    message: message
+  })
+    .then(() => {
+      console.log("Document successfully written!");
+      window.location.href = "game.html";
+    })
+    .catch((error) => {
+      console.error("Error writing document: ", error);
+    });
+
+}
