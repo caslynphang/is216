@@ -101,7 +101,7 @@ export default class MainScene extends Phaser.Scene {
         })
         this.concoursebgm.play()
         // conquered attribute
-        this.sisconquered = false
+        this.scisconquered = false
         this.soeconquered = false
         this.sobconquered = false
         this.soaconquered = false
