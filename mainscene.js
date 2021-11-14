@@ -101,7 +101,7 @@ export default class MainScene extends Phaser.Scene {
         })
         this.concoursebgm.play()
         // conquered attribute
-        this.scisconquered = false
+        this.sisconquered = false
         this.soeconquered = false
         this.sobconquered = false
         this.soaconquered = false
@@ -256,7 +256,7 @@ export default class MainScene extends Phaser.Scene {
         else if(this.matter.containsPoint(this.sisZone, this.player.x, this.player.y)){
             this.player.x = this.schoolStartx
             this.player.y = this.schoolStarty
-            this.schoolvisited = 'SCIS'
+            this.schoolvisited = 'SIS'
             this.cameras.main.fadeIn(6000)
             this.concoursebgm.pause()
             this.schoolbgm.play()
@@ -282,7 +282,7 @@ export default class MainScene extends Phaser.Scene {
                 this.player.x = this.soaStartx
                 this.player.y = this.soaStarty
             }
-            else if (this.schoolvisited == 'SCIS'){
+            else if (this.schoolvisited == 'SIS'){
                 this.player.x = this.sisStartx
                 this.player.y = this.sisStarty
             }
