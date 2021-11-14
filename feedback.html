@@ -70,6 +70,15 @@
 
     <script src="firebase_config.js"></script>
     <script src="feedback.js"></script>
+    <script>
+        firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            
+        } else {
+            window.location.href = "index.html";
+        }
+        });
+    </script>
 
 
 
