@@ -6,12 +6,12 @@ export default class quiz extends Phaser.Scene {
     }
 
     preload(){
-        this.load.json('questions', "./Assets/data.json")    
+        this.load.json('questions', "./assets/data.json")    
     }
 
 
     create() {
-        window.mainScene = this.scene.get("MainScene")
+        window.mainScene = this.scene.get("test")
         this.school = mainScene.school
         this.conquered = mainScene.conquered
         window.questions = this.cache.json.get("questions")
