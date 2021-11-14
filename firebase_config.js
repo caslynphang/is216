@@ -22,7 +22,7 @@ function send() {
   })
     .then(() => {
       console.log("Document successfully written!");
-      window.location.href = "game.html";
+      window.location.href = "index.html";
     })
     .catch((error) => {
       console.error("Error writing document: ", error);
