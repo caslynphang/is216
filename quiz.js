@@ -11,6 +11,7 @@ export default class quiz extends Phaser.Scene {
 
 
     create() {
+        console.log("ran")
         window.mainScene = this.scene.get("MainScene")
         this.school = mainScene.schoolVisited
         this.conquered = mainScene[this.school + 'conquered']
