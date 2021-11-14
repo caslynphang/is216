@@ -2,7 +2,7 @@ document.getElementById('logoutBtn').addEventListener('click', logoutUser);
 
 function logoutUser() {
     firebase.auth().signOut().then(() => {
-        window.location.href = "login.html";
+        window.location.href = "index.html";
     }).catch(e => {
         console.log(e)
     })
