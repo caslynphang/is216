@@ -37,7 +37,7 @@ function loginUser() {
     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
         .then(function () {
             firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
-                // window.location.href = "game.html";
+                window.location.href = "game.html";
             }).catch(e => {
                 error.innerHTML = "Incorrect Email Address or Password";
             })
@@ -56,7 +56,7 @@ function GoogleLogin() {
     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
         .then(function () {
             firebase.auth().signInWithPopup(provider).then(res => {
-                // window.location.href = "game.html";
+                window.location.href = "game.html";
             }).catch(e => {
                 console.log(e)
             })
@@ -67,10 +67,4 @@ function GoogleLogin() {
         });
 }
 
-firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-        window.location.href = "game.html";
-    } else {
-        // window.location.href = "index.html";
-    }
-});
+
