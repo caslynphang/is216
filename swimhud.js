@@ -11,8 +11,11 @@ export default class SwimHud extends Phaser.Scene{
     create() {
         const screenCenterX = this.cameras.main.worldView.x + this.cameras.main.width / 2;
         const screenCenterY = this.cameras.main.worldView.y + this.cameras.main.height / 2;
-        const playButton = this.add.image(screenCenterX - 200, screenCenterY, 'playbutton1').setInteractive()
-        const exitButton = this.add.image(screenCenterX + 200, screenCenterY, 'exitbutton1').setInteractive()
+        this.add.rectangle(screenCenterX, screenCenterY, 1200, 600, 0x000000).setStrokeStyle(10, 0x02167a)
+        this.add.text(screenCenterX - 300, screenCenterY - 150, 'Mash the button!', {font: '64px Courier'});
+        this.add.text(screenCenterX - 325, screenCenterY - 100, 'Complete the laps', {font: '64px Courier'});
+        const playButton = this.add.image(screenCenterX - 200, screenCenterY + 100, 'playbutton1').setInteractive()
+        const exitButton = this.add.image(screenCenterX + 200, screenCenterY + 100, 'exitbutton1').setInteractive()
         var mainScene = this.scene.get('MainScene')
         exitButton.setScale(4)
         playButton.setScale(4)

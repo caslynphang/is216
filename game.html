@@ -5,8 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- The title of our webpage, subject to change -->
-    <title>mySMUgame</title>
-    <link rel="icon" href="Assets/Logo/logo.png" type="image/icon type">
+    <title>Smu Map</title>
     <!-- Using phaser CDN, chose .min.js because apparently it preserves bandwidth. -->
     <script src="//cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
     <style>
@@ -25,16 +24,5 @@
     <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
     <script src="firebase_config.js"></script>
-    <script>
-        firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-            //window.location.href = "game.html";
-        } else {
-            window.location.href = "index.html";
-        }
-        });
-    </script>
-    
-    
 </body>
 </html>

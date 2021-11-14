@@ -11,8 +11,10 @@ export default class BikeHud extends Phaser.Scene{
     create() {
         const screenCenterX = this.cameras.main.worldView.x + this.cameras.main.width / 2;
         const screenCenterY = this.cameras.main.worldView.y + this.cameras.main.height / 2;
-        const playButton = this.add.image(screenCenterX - 200, screenCenterY, 'playbutton').setInteractive()
-        const exitButton = this.add.image(screenCenterX + 200, screenCenterY, 'exitbutton').setInteractive()
+        this.add.rectangle(screenCenterX, screenCenterY, 1200, 600, 0x000000).setStrokeStyle(10, 0x02167a)
+        this.add.text(screenCenterX - 300, screenCenterY - 100, 'Dodge Obstacles!', {font: '64px Courier'});
+        const playButton = this.add.image(screenCenterX - 200, screenCenterY + 100, 'playbutton').setInteractive()
+        const exitButton = this.add.image(screenCenterX + 200, screenCenterY + 100, 'exitbutton').setInteractive()
         var mainScene = this.scene.get('MainScene')
         exitButton.setScale(4)
         playButton.setScale(4)

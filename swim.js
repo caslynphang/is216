@@ -15,10 +15,10 @@ export default class SwimScene extends Phaser.Scene{
     create() {
         this.gameRunning = true
         this.score = 0
-        this.maxScore = Phaser.Math.Between(3, 8)
+        this.maxScore = Phaser.Math.Between(3, 5)
         this.maxTime = 0
         for (let i = 0; i < this.maxScore; i++) {
-            this.maxTime += Phaser.Math.FloatBetween(1.5, 2.5)
+            this.maxTime += Phaser.Math.FloatBetween(2.3, 2.6)
         }
         this.goLeft = false;
         const scene = this
@@ -66,10 +66,10 @@ export default class SwimScene extends Phaser.Scene{
         this.btnInteractive.on('pointerdown', function(){
             if(scene.gameRunning) {
                 if (this.goLeft){
-                    this.swimmer.thrustBack(Phaser.Math.FloatBetween(0.1, 0.2))
+                    this.swimmer.thrustBack(Phaser.Math.FloatBetween(0.15, 0.25))
                 }
                 else {
-                    this.swimmer.thrust(Phaser.Math.FloatBetween(0.1, 0.2));
+                    this.swimmer.thrust(Phaser.Math.FloatBetween(0.15, 0.25));
                 }
             } 
         }, this)

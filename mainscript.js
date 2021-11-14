@@ -8,7 +8,6 @@ import MainScene from "./mainscene.js";
 import DanceScene from "./simon.js";
 import SwimScene from "./swim.js";
 import SwimHud from "./swimhud.js";
-import quiz from "./quiz.js"
 
 const config = {
     width: 1980,
@@ -16,7 +15,7 @@ const config = {
     backgroundColour: "#333333",
     type: Phaser.AUTO,
     parent: "game-canvas",
-    scene:[MainScene, HUDScene, DanceScene, BikeScene, BikeHud, SwimScene, SwimHud, quiz],
+    scene:[MainScene, HUDScene, DanceScene, BikeScene, BikeHud, SwimScene, SwimHud],
     scale: {
         
         mode:Phaser.Scale.FIT,
@@ -26,7 +25,7 @@ const config = {
     physics: {
         default: 'matter',
         matter: {
-            debug:true,
+            debug: true,
             gravity:{y:0}
         }
     },

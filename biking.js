@@ -44,8 +44,8 @@ export default class BikeScene extends Phaser.Scene{
         var mainScene = this.scene.get('MainScene')
         this.scene.launch('BikeHud')
         this.scene.pause()
-        this.btnLeft = this.add.existing(new GameButton(this,1652, 896, 'buttons', 'btnleft'));
-        this.btnRight = this.add.existing(new GameButton(this,1748, 896, 'buttons', 'btnright'));
+        this.btnLeft = this.add.existing(new GameButton(this,1632, 896, 'buttons', 'btnleft'));
+        this.btnRight = this.add.existing(new GameButton(this,1768, 896, 'buttons', 'btnright'));
         this.btnLeft.onPressed =()=> {
             this.biker.setVelocityX(-10);
         }
