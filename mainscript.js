@@ -16,7 +16,7 @@ const config = {
     backgroundColour: "#333333",
     type: Phaser.AUTO,
     parent: "game-canvas",
-    scene:[MainScene, HUDScene, DanceScene, BikeScene, BikeHud, SwimScene, SwimHud],
+    scene:[MainScene, HUDScene, DanceScene, BikeScene, BikeHud, SwimScene, SwimHud, quiz],
     scale: {
         
         mode:Phaser.Scale.FIT,
