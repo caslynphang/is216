@@ -26,7 +26,7 @@
       }
     ],
 
-    "SIS":[
+    "SCIS":[
       {
         "id": 1,
         "question": "What animal is the mascot for Ellipsis, the student representative body of SCIS?",
@@ -81,9 +81,9 @@
       },    
       {
         "id": 3,
-        "question": "As of 30 Sep 2021, there are ___ students enrolled in the undergraduate degrees in SCIS.",
-        "choices": ["1995", "1996", "1997"],
-        "answer": 1
+        "question": "What does LKC in LKCSB stand for?",
+        "choices": ["Lum Kah Chye", "Lay Kun Chee", "Lee Kong Chian"],
+        "answer": 2
       }
     ]
   }
