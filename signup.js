@@ -107,7 +107,7 @@ function signUpUser() {
         .then(function () {
             // CREATING USER & ADDING IT INTO THE FIREBASE
             firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
-                window.location.href = "game.html";
+               
             }).catch(e => {
                 error.innerHTML = "Sign Up unsuccessful. Please try again."
                 reset();
@@ -130,7 +130,7 @@ function GoogleLogin() {
     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
         .then(function () {
             firebase.auth().signInWithPopup(provider).then(res => {
-                window.location.href = "game.html";
+                
             }).catch(e => {
                 console.log(e)
             })
@@ -140,3 +140,13 @@ function GoogleLogin() {
             console.log(error);
         });
 }
+
+firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+        window.location.href = "game.html";
+        console.log(user)
+    } else {
+        // window.location.href = "index.html";
+    }
+});
+
