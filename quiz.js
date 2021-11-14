@@ -7,38 +7,49 @@ export default class quiz extends Phaser.Scene {
 
     preload(){
 
-        this.load.json('questions', "./Assets/data.json")    
         this.load.scenePlugin('rexuiplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexuiplugin.min.js', 'rexUI', 'rexUI');
+
+
+
+
     }
 
 
     create() {
-        console.log("ran")
+
         window.mainScene = this.scene.get("MainScene")
         this.school = mainScene.schoolvisited
-        console.log(this.school)
-        this.conquered = mainScene[this.school.toLowerCase() + 'conquered']
-        console.log(this.school.toLowerCase() + 'conquered')
-        console.log(this.conquered)
-        window.questions = this.cache.json.get("questions")
         this.score = 0
         this.print = this.add.text(0, 0, '');
-        this.questioncount = 0
-        
-        if(this.conquered == false){
-            createStartDialog(this, this.school)
-        } else {
-            mainScene.closeScene("quiz")
-        }
+        this.questioncount = 1
+        this.conquered = mainScene[this.school.toLowerCase() + 'conquered']
 
+        var schoolDoc = db.collection("quiz").doc(this.school.toLowerCase())
+
+        schoolDoc.get()
+        .then((doc) =>{
+            if(doc.exists){
+                window.questions = doc.data()
+                if(this.conquered == false){
+                    createStartDialog(this, this.school)
+                } else {
+                    mainScene.closeScene("quiz")
+                }
+            } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+            }
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        });
 
 
     }
 }
 
 function genQuestionDialog(scene, count){
-    if(count == questions[scene.school].length){
-        if(scene.score >= Math.ceil(questions[scene.school].length/2)){
+    if(count == Object.keys(questions).length + 1){
+        if(scene.score >= Math.ceil(Object.keys(questions).length/2)){
             scene.conquered = true
             createEndDialog(scene)
             return 
@@ -49,9 +60,12 @@ function genQuestionDialog(scene, count){
         }
     }
 
+    var curr = "q" + String(count)
+
+
     scene.rexUI.modalPromise(
-        // Game object
-        createQuestionDialog(scene, questions[scene.school][count]),
+        
+        createQuestionDialog(scene, questions[curr]),
         // Config
         {
             manualClose: true,
@@ -130,8 +144,6 @@ var createQuestionDialog = function (scene, qn){
     dialog    
         .hideAction(0)
         .on('button.click', function (button, groupName, index, event) {
-            console.log(button)
-            console.log("test")
             if(this.getElement('choices').includes(button)){ //check if button is a choice button
                 if(index == qn.answer){
                     answered = true
@@ -186,8 +198,7 @@ var createQuestionDialog = function (scene, qn){
 }
 
 var createStartDialog = function (scene, school){
-    console.log(scene.rexUI)
-    var content = 'Welcome to ' + school +"! Play our quiz to learn more about the school, and get a passing score to 'beat' the school! After answering, you can hover over the choices to find out the correct answer!"
+    var content = 'Welcome to ' + school +"! Play our quiz to learn more about the school! After answering, you can hover over the choices to find out the correct answer!"
     var dialog = 
         scene.rexUI.add.dialog({
         x: scene.scale.width*0.5,
@@ -249,7 +260,7 @@ var createStartDialog = function (scene, school){
         
     dialog    
         .on('button.click', function (button, groupName, index, event) {
-            genQuestionDialog(scene, 0)
+            genQuestionDialog(scene, 1)
             dialog.destroy()
         }, this)
         .on('button.over', function (button, groupName, index) {
@@ -364,7 +375,7 @@ var createRestartDialog = function (scene){
         }),
 
         
-        description: scene.add.text(0, 0, "You have not conquered the school! Try Again? ", {
+        description: scene.add.text(0, 0, "You did not pass the quiz! Try Again? ", {
             fontSize: '24px',
             wordWrap:{
                 width: scene.scale.width * 0.6
