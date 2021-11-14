@@ -36,7 +36,7 @@ export default class quiz extends Phaser.Scene {
 
 function genQuestionDialog(scene, count){
     if(count == questions[scene.school].length){
-        if(scene.score >= Math.floor(questions[scene.school].length/2)){
+        if(scene.score >= Math.ceil(questions[scene.school].length/2)){
             scene.conquered = true
             createEndDialog(scene)
             return 
