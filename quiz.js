@@ -22,7 +22,7 @@ export default class quiz extends Phaser.Scene {
         this.score = 0
         this.print = this.add.text(0, 0, '');
         this.questioncount = 1
-        this.conquered = mainScene[this.school.toLowerCase() + 'conquered']
+
 
         var schoolDoc = db.collection("quiz").doc(this.school.toLowerCase())
 
@@ -30,11 +30,7 @@ export default class quiz extends Phaser.Scene {
         .then((doc) =>{
             if(doc.exists){
                 window.questions = doc.data()
-                if(this.conquered == false){
-                    createStartDialog(this, this.school)
-                } else {
-                    mainScene.closeScene("quiz")
-                }
+                createStartDialog(this, this.school)
             } else {
                 // doc.data() will be undefined in this case
                 console.log("No such document!");
